@@ -36,10 +36,10 @@ min_left=`echo "scale=0; 1440 - $dim" | bc`                                     
 rad=`echo "scale=2; $did * 0.0174532925" | bc`                                                                                              #day in radians.
 #==========================================================================================================================================
 age_years=`echo " $noy - 1976" | bc`                                                                                                        #my age in years 
-age_hrs=`echo " 8766 * $age_years + $doy * 24 - 140 * 24" | bc`                                                                             #my age in hours
+age_hrs=`echo " 8766 * $age_years + $doy * 24 - 140 * 24 - 2" | bc`                                                                         #my age in hours
 age_days=`echo " $age_hrs / 24" | bc`                                                                                                       #my age in days
-age_minutes=`echo " $age_hrs * 60 + $min" | bc`                                                                                             #my age in minutes
-age_seconds=`echo " $age_minutes * 60 + $sec" | bc`                                                                                         #my age in seconds
+age_minutes=`echo " $age_hrs * 60 + $min - 120" | bc`                                                                                       #my age in minutes
+age_seconds=`echo " $age_minutes * 60 + $sec + 20" | bc`                                                                                    #my age in seconds
 age_deg=`echo " $age_seconds / 240 + $did" | bc`                                                                                            #my age in degree
 age_rad=`echo "scale=2; $age_deg / 57.2957795" | bc`                                                                                        #my age in radians
 #==========================================================================================================================================
@@ -53,19 +53,24 @@ rad_days_of_years=`echo "scale=2; 6.2831853 * $doy + $rad" | bc`                
 rad_years=`echo "scale=2; $noy * 2294.93343082 + $rad_days_of_years" | bc`                                                                  #date in radians
 ########################################################################################################################################### 
 header="\n%21s%21s%20s%20s\t\t\t%22s%30s"                                                                                                   #
-format="\n%-20s%20s%20s%20s\t\t\t%20s%30s"                                                                                                  #
+format="\n%-21s%20s%20s%20s\t\t\t%20s%30s"                                                                                                  #
 ###########################################################################################################################################
 printf "\n"                                                                                                                                 #new line
-printf "$header" "" "[ HOURS.hrs ]" "[ MINUTES.min ]" "[ SECONDS.sec ]" "[ DEGREES.deg ]" "[ RADIANS.rad ]"                                 #
+printf "$header" "D$doy/T$hrs:$min:$sec/R$did" "[ HOURS.hrs ]" "[ MINUTES.min ]" "[ SECONDS.sec ]" "[ DEGREES.deg ]" "[ RADIANS.rad ]"                                 #
 printf "\n"                                                                                                                                 #new line
 printf "\n"                                                                                                                                 #new line
 printf "$format" " [ DAY  IN : ]" "$hrs.hrs" "$dim.min" "$dis.sec" "$did.deg" "$rad.rad"                                                    #
 printf "\n"                                                                                                                                 #new line
 printf "$format" " [ YEAR IN : ]" "$yih.hrs" "$yim.min" "$yis.sec" "$year_in_degree.deg" "$rad_days_of_years.rad"                           #
 printf "\n"                                                                                                                                 #new line
-printf "$format" " [ DATE IN : ]" "$date_in_hrs.hrs" "$date_in_min.min" "$date_in_sec.sec" "$date_in_degree.deg" "$rad_years.rad"           #
+printf "$format" " [ 0BC. IN : ]" "$date_in_hrs.hrs" "$date_in_min.min" "$date_in_sec.sec" "$date_in_degree.deg" "$rad_years.rad"           #
 printf "\n"                                                                                                                                 #new line
-printf "$format" " [ LIFE IN : ]" "$age_hrs.hrs" "$age_minutes.min" "$age_seconds.sec" "$age_deg.deg" "$age_rad.rad"                        #
+printf "\n"                                                                                                                                 #new line
+printf "\n"                                                                                                                                 #new line
+printf "\n"                                                                                                                                 #new line
+printf "$header" "Y$age_years/D$age_days/T$age_hrs:$min" "[ YEARS.yrs ]" "[ DAYS.dys ]" "[ HOURS.hrs ]" "[ MINUTES.min ]" "[ DEGREE.deg ]"
+printf "\n"                                                                                                                                 #new line
+printf "$format" " [ LIFE IN : ]" "$age_years.yrs" "$age_days.dys" "$age_hrs.hrs" "$age_minutes.min" "$age_deg.deg"                        #
 printf "\n"                                                                                                                                 #new line
 printf "\n"                                                                                                                                 #new line
 ###########################################################################################################################################
