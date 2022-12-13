@@ -6,7 +6,7 @@ min=$(date +%M) #Minutes
 min_cd=`echo "scale=0; 60 - $min" | bc` #Minutes.CountDown
 sec=$(date +%S) #Seconds
 sec_cd=`echo "scale=0; 60 - $sec" | bc` #Seconds.CountDown
-dom=$(date +%d) #DayOfMonths
+dom=$(date +%d) #DayOfMonth
 dow=$(date +%w) #DayOfWeek
 dow_cd=`echo "scale=0; 7 - $dow" | bc` #DayOfWeek.CountDown
 now=$(date +%U) #NumberOfWeek
